@@ -7,9 +7,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="addForm">
+      <form id="form" action="">
+        <legend id="legend">NEW BOOK</legend>
+          <input type="text" name="" id=""  placeholder="Title"/>
+          <input type="text" name="" id="" placeholder="Author"/>
+          <input type="number" name="" id="" placeholder="Number of pages"/>
+          <div class="select">
+            <label for="">Status:  </label>
+
+            <select name="" id="">
+              <option value="">Read</option>
+              <option value="">Not read</option>
+              </select>
+          </div>
+
+          <button id="addBook">ADD BOOK</button>
+          
+        </div>
+
+
+
+      </form>
+    </div>
+    <div id="modal"></div>
+
     <div class="container">
       <div class="header-container">
-        <h1 id="header">Bibli</h1>
+        <h1 id="header">📚Bibli</h1>
         <p class="desc">
           This is a project for
           <a href="https://www.theodinproject.com">The Odin Project</a> in which
@@ -22,7 +47,15 @@
         <p>Check out <a href="https://twitter.com/pranavxdev">my twitter</a></p>
       </div>
 
-      <button id="addBtn">add book</button>
+      <button id="addBtn">ADD BOOK</button>
+
+      <div class="books-container">
+        <div class="tile">
+          <div class="del-container">
+            <div class="del"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
