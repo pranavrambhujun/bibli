@@ -8,11 +8,11 @@
   </head>
   <body>
     <div id="addForm">
-      <form id="form" action="">
+      <form id="form" onsubmit="onSubmit(event)" action="">
         <legend id="legend">NEW BOOK</legend>
-          <input type="text" name="" id=""  placeholder="Title"/>
-          <input type="text" name="" id="" placeholder="Author"/>
-          <input type="number" name="" id="" placeholder="Number of pages"/>
+          <input type="text" name="" id="title"  placeholder="Title"/>
+          <input type="text" name="" id="author" placeholder="Author"/>
+          <input type="number" name="" id="pages" placeholder="Number of pages"/>
           <div class="select">
             <label for="">Status:  </label>
 
@@ -53,6 +53,12 @@
         <div class="tile">
           <div class="del-container">
             <div class="del"></div>
+          </div>
+          <div class="book-info">
+            <p id="tileTitle">title</p>
+            <p id="author">author</p>
+            <p id="tile-pages">185 pages</p>
+            <div id="tileIsRead">Read</div>
           </div>
         </div>
       </div>

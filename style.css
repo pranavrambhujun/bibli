@@ -153,6 +153,38 @@ select {
   border: 1px solid black;
 }
 
+.book-info {
+  background-color: #eef7ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  gap: 20px;
+}
+
+.book-info > p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#tileTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#tileIsRead {
+  width: 70%;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 .del-container {
   height: 30px;
   display: flex;
