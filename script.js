@@ -58,6 +58,8 @@ addBook.addEventListener("click", function () {
   const del = document.createElement("div");
   del.classList.add("del");
 
+  new Book(title, author, pages, (isRead = false));
+
   tileTitle.innerHTML = `"${title}"`;
   tileAuthor.innerHTML = author;
   tilePages.innerHTML = `${pages} pages`;
@@ -85,4 +87,5 @@ addBook.addEventListener("click", function () {
 
 const onSubmit = function (event) {
   event.preventDefault();
+  document.getElementById("form").reset();
 };
