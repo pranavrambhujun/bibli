@@ -3,12 +3,11 @@ const add = document.getElementById("addBtn");
 const addBook = document.getElementById("addBook");
 const addForm = document.getElementById("addForm");
 const modal = document.getElementById("modal");
+const form = document.getElementById("form");
 
-const books = [];
-
-function addBookToLibrary() {}
-
-const createTile = function () {};
+var titleVal = document.getElementById("title");
+var authorVal = document.getElementById("author");
+var pagesVal = document.getElementById("pages");
 
 add.addEventListener("click", function () {
   modal.style.display = "initial";
@@ -20,18 +19,19 @@ add.addEventListener("click", function () {
   });
 });
 
-const Book = function (title, author, pages, isRead) {
+const library = [];
+
+const Book = function (title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.isRead = isRead;
 };
 
-addBook.addEventListener("click", function () {
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const pages = document.getElementById("pages").value;
+function addBookToLibrary(newBook) {
+  library.push(newBook);
+}
 
+function createBook(newBook) {
   // create book tile
   const tile = document.createElement("div");
   tile.classList.add("tile");
@@ -58,11 +58,9 @@ addBook.addEventListener("click", function () {
   const del = document.createElement("div");
   del.classList.add("del");
 
-  new Book(title, author, pages, (isRead = false));
-
-  tileTitle.innerHTML = `"${title}"`;
-  tileAuthor.innerHTML = author;
-  tilePages.innerHTML = `${pages} pages`;
+  tileTitle.innerHTML = newBook.title;
+  tileAuthor.innerHTML = newBook.author;
+  tilePages.innerHTML = `${newBook.pages} pages`;
 
   //appending elements
 
@@ -78,14 +76,23 @@ addBook.addEventListener("click", function () {
 
   // if del is clicked, removes the element
   del.addEventListener("click", function () {
-    tileField.removeChild(tile);
+    library.shift(Book);
   });
 
   modal.style.display = "none";
   addForm.style.display = "none";
-});
+}
 
 const onSubmit = function (event) {
   event.preventDefault();
-  document.getElementById("form").reset();
+  newBook = new Book(titleVal.value, authorVal.value, pagesVal.value);
+  addBookToLibrary(newBook);
+  console.log(library);
+
+  modal.style.display = "none";
+  addForm.style.display = "none";
 };
+
+for (let i = 0; i < library.length; i++) {
+  createBook(newBook);
+}
