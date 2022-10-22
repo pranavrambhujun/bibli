@@ -27,11 +27,12 @@ const Book = function (title, author, pages) {
   this.pages = pages;
 };
 
-function addBookToLibrary(newBook) {
+function addBookToLibrary() {
+  newBook = new Book(titleVal.value, authorVal.value, pagesVal.value);
   library.push(newBook);
 }
 
-function createBook(newBook) {
+function createTile() {
   // create book tile
   const tile = document.createElement("div");
   tile.classList.add("tile");
@@ -76,7 +77,7 @@ function createBook(newBook) {
 
   // if del is clicked, removes the element
   del.addEventListener("click", function () {
-    library.shift(Book);
+    library.shift(newBook);
   });
 
   modal.style.display = "none";
@@ -85,14 +86,17 @@ function createBook(newBook) {
 
 const onSubmit = function (event) {
   event.preventDefault();
-  newBook = new Book(titleVal.value, authorVal.value, pagesVal.value);
-  addBookToLibrary(newBook);
+  addBookToLibrary();
   console.log(library);
 
   modal.style.display = "none";
   addForm.style.display = "none";
 };
 
-for (let i = 0; i < library.length; i++) {
-  createBook(newBook);
+function display() {
+  for (let i = 0; i < library.length; i++) {
+    createTile(library[i]);
+  }
 }
+
+display();
