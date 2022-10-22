@@ -28,11 +28,11 @@ const Book = function (title, author, pages) {
 };
 
 function addBookToLibrary() {
-  newBook = new Book(titleVal.value, authorVal.value, pagesVal.value);
+  var newBook = new Book(titleVal.value, authorVal.value, pagesVal.value);
   library.push(newBook);
 }
 
-function createTile() {
+function tile(newBook) {
   // create book tile
   const tile = document.createElement("div");
   tile.classList.add("tile");
@@ -73,12 +73,10 @@ function createTile() {
   delContainer.appendChild(del);
   tile.appendChild(delContainer);
   tile.appendChild(tileBookInfo);
-  tileField.appendChild(tile);
+  //tileField.appendChild(tile);
 
   // if del is clicked, removes the element
-  del.addEventListener("click", function () {
-    library.shift(newBook);
-  });
+  del.addEventListener("click", function () {});
 
   modal.style.display = "none";
   addForm.style.display = "none";
@@ -94,8 +92,8 @@ const onSubmit = function (event) {
 };
 
 function display() {
-  for (let i = 0; i < library.length; i++) {
-    createTile(library[i]);
+  for (let i = library.length - 1; i < library.length; i++) {
+    tile(library[i]);
   }
 }
 
