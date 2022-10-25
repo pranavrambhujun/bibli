@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="addForm">
-      <form id="form" onsubmit="onSubmit(event)" action="">
+      <form id="form" onsubmit="onSubmit(event); this.reset();" action="">
         <legend id="legend">NEW BOOK</legend>
           <input type="text" name="" id="title"  placeholder="Title"/>
           <input type="text" name="" id="author" placeholder="Author"/>

@@ -9,15 +9,7 @@ var titleVal = document.getElementById("title");
 var authorVal = document.getElementById("author");
 var pagesVal = document.getElementById("pages");
 
-add.addEventListener("click", function () {
-  modal.style.display = "initial";
-  addForm.style.display = "initial";
 
-  modal.addEventListener("click", function () {
-    modal.style.display = "none";
-    addForm.style.display = "none";
-  });
-});
 
 const library = [];
 
@@ -27,12 +19,14 @@ const Book = function (title, author, pages) {
   this.pages = pages;
 };
 
+library.push(new Book("Liber Null & Psychonaut", "Peter J Caroll", 224));
+library.push(new Book("Condensed Chaos", "Phil Hine", 192));
+
 function addBookToLibrary() {
-  var newBook = new Book(titleVal.value, authorVal.value, pagesVal.value);
-  library.push(newBook);
+  library.push(new Book(titleVal.value, authorVal.value, pagesVal.value));
 }
 
-function tile(newBook) {
+function createTile(book) {
   // create book tile
   const tile = document.createElement("div");
   tile.classList.add("tile");
@@ -59,9 +53,9 @@ function tile(newBook) {
   const del = document.createElement("div");
   del.classList.add("del");
 
-  tileTitle.innerHTML = newBook.title;
-  tileAuthor.innerHTML = newBook.author;
-  tilePages.innerHTML = `${newBook.pages} pages`;
+  tileTitle.innerHTML = book.title;
+  tileAuthor.innerHTML = book.author;
+  tilePages.innerHTML = `${book.pages} pages`;
 
   //appending elements
 
@@ -73,10 +67,13 @@ function tile(newBook) {
   delContainer.appendChild(del);
   tile.appendChild(delContainer);
   tile.appendChild(tileBookInfo);
-  //tileField.appendChild(tile);
+  tileField.appendChild(tile);
 
   // if del is clicked, removes the element
-  del.addEventListener("click", function () {});
+  del.addEventListener("click", function () {
+    library.shift();
+    console.log(library);
+  });
 
   modal.style.display = "none";
   addForm.style.display = "none";
@@ -87,14 +84,28 @@ const onSubmit = function (event) {
   addBookToLibrary();
   console.log(library);
 
+
   modal.style.display = "none";
   addForm.style.display = "none";
 };
 
-function display() {
-  for (let i = library.length - 1; i < library.length; i++) {
-    tile(library[i]);
+// renders book in tileField
+function renderBooks() {
+  for (let i = 0; i < library.length; i++) {
+    createTile(library[i]);
   }
 }
 
-display();
+renderBooks();
+
+
+add.addEventListener("click", function () {
+  modal.style.display = "initial";
+  addForm.style.display = "initial";
+
+  modal.addEventListener("click", function () {
+    modal.style.display = "none";
+    addForm.style.display = "none";
+  });
+});
+
