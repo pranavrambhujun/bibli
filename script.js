@@ -83,7 +83,8 @@ const onSubmit = function (event) {
   event.preventDefault();
   addBookToLibrary();
   console.log(library);
-
+  tileField.innerHTML = "";
+  renderBooks();
 
   modal.style.display = "none";
   addForm.style.display = "none";
@@ -97,6 +98,12 @@ function renderBooks() {
 }
 
 renderBooks();
+
+function renderBooksAfterSubmit() {
+  for (let i = 0; i < library.length; i++) {
+    createTile(library[i]);
+  }
+}
 
 
 add.addEventListener("click", function () {
