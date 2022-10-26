@@ -1,5 +1,5 @@
 /* TODO:
- *  - work on delete button(make sure it's linked to the DOM element)
+ *  - work on delete button(make sure it's linked to the DOM element) DONE
  *  - work on read toggle
  * 
  **/
@@ -26,9 +26,16 @@ const Book = function (title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.readToggle = function() {
+    if(this.read = "Read") {
+      this.read = "Not read"
+    } else {
+      this.read = "Read"
+    }
+  }
 };
 
-library.push(new Book("Liber Null & Psychonaut", "Peter J Caroll", 224, "Not read"));
+library.push(new Book("Liber Null & Psychonaut", "Peter J Caroll", 224, "Read"));
 library.push(new Book("Condensed Chaos", "Phil Hine", 192, "Not read"));
 
 
@@ -82,12 +89,22 @@ function createTile(book) {
   tile.appendChild(tileBookInfo);
   tileField.appendChild(tile);
 
-
-
   del.addEventListener("click", function() {
     library.splice(del.dataset.tile, 1)
     console.log(library)
     renderBooks();
+  })
+
+  tileIsRead.addEventListener('click', function() {
+    console.log(library[del.dataset.tile]["read"]);
+    
+    book.readToggle();
+
+    console.log(library[del.dataset.tile]["read"]);
+
+    console.log(library);
+
+  
   })
 
 
@@ -128,7 +145,6 @@ add.addEventListener("click", function () {
   });
 });
 
-const dels = document.querySelectorAll(".del");
 
 
 
