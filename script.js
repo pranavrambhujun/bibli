@@ -1,30 +1,43 @@
+/* TODO:
+ *  - work on delete button(make sure it's linked to the DOM element)
+ *  - work on read toggle
+ * 
+ **/
+
+
+
 const tileField = document.querySelector(".books-container");
 const add = document.getElementById("addBtn");
 const addBook = document.getElementById("addBook");
 const addForm = document.getElementById("addForm");
 const modal = document.getElementById("modal");
 const form = document.getElementById("form");
+const delBtn = document.querySelectorAll(".del");
 
 var titleVal = document.getElementById("title");
 var authorVal = document.getElementById("author");
 var pagesVal = document.getElementById("pages");
+var isRead = document.getElementById('isRead');
 
 
 
 const library = [];
 
-const Book = function (title, author, pages) {
+const Book = function (title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = read;
 };
 
-library.push(new Book("Liber Null & Psychonaut", "Peter J Caroll", 224));
-library.push(new Book("Condensed Chaos", "Phil Hine", 192));
+library.push(new Book("Liber Null & Psychonaut", "Peter J Caroll", 224, "Not read"));
+library.push(new Book("Condensed Chaos", "Phil Hine", 192, "Not read"));
 
 function addBookToLibrary() {
-  library.push(new Book(titleVal.value, authorVal.value, pagesVal.value));
+  library.push(new Book(titleVal.value, authorVal.value, pagesVal.value, isRead.value));
 }
+
+
 
 function createTile(book) {
   // create book tile
@@ -53,9 +66,14 @@ function createTile(book) {
   const del = document.createElement("div");
   del.classList.add("del");
 
+  for(let i = 0; i < library.length - 1; i++) {
+    tile.dataset.tile = `${i}`;
+  }
+
   tileTitle.innerHTML = book.title;
   tileAuthor.innerHTML = book.author;
   tilePages.innerHTML = `${book.pages} pages`;
+  tileIsRead.innerHTML = book.read;
 
   //appending elements
 
@@ -69,11 +87,18 @@ function createTile(book) {
   tile.appendChild(tileBookInfo);
   tileField.appendChild(tile);
 
+  /*
   // if del is clicked, removes the element
   del.addEventListener("click", function () {
     library.shift();
     console.log(library);
   });
+  */
+
+
+ 
+
+
 
   modal.style.display = "none";
   addForm.style.display = "none";
@@ -83,27 +108,26 @@ const onSubmit = function (event) {
   event.preventDefault();
   addBookToLibrary();
   console.log(library);
-  tileField.innerHTML = "";
   renderBooks();
 
   modal.style.display = "none";
   addForm.style.display = "none";
 };
 
+
+
 // renders book in tileField
 function renderBooks() {
+  tileField.innerHTML = "";
   for (let i = 0; i < library.length; i++) {
     createTile(library[i]);
   }
 }
+
+
 
 renderBooks();
 
-function renderBooksAfterSubmit() {
-  for (let i = 0; i < library.length; i++) {
-    createTile(library[i]);
-  }
-}
 
 
 add.addEventListener("click", function () {
@@ -116,3 +140,9 @@ add.addEventListener("click", function () {
   });
 });
 
+
+delBtn.forEach(element => {
+  element.addEventListener('click', function() {
+    console.log('clicked');
+  })
+});
