@@ -1,11 +1,3 @@
-/* TODO:
- *  - work on delete button(make sure it's linked to the DOM element) DONE
- *  - work on read toggle
- * 
- **/
-
-
-
 const tileField = document.querySelector(".books-container");
 const add = document.getElementById("addBtn");
 const addBook = document.getElementById("addBook");
@@ -29,9 +21,8 @@ const Book = function (title, author, pages, read) {
   this.readToggle = function() {
     if(this.read == "Read") {
       this.read = "Not read";
-    }
-    if(this.read == "Not read") {
-      this.read = "Read"
+    } else {
+      this.read = "Read";
     }
   }
 };
@@ -78,6 +69,8 @@ function createTile(book) {
   tilePages.innerHTML = `${book.pages} pages`;
   tileIsRead.innerHTML = book.read;
 
+
+
   //appending elements
 
   tileBookInfo.appendChild(tileTitle);
@@ -90,24 +83,29 @@ function createTile(book) {
   tile.appendChild(tileBookInfo);
   tileField.appendChild(tile);
 
+  function readColor() {
+    if(book.read == "Read") {
+      tileIsRead.style.backgroundColor = '#9fff9c';
+    } else {
+      tileIsRead.style.backgroundColor = '#ff9c9c';
+    }
+  }
+
+  readColor();
+
+  // delete function
   del.addEventListener("click", function() {
     library.splice(del.dataset.tile, 1)
     console.log(library)
     renderBooks();
   })
 
+  // read status toggle
   tileIsRead.addEventListener('click', function() {
-    console.log(library[del.dataset.tile]["read"]);
-    
     book.readToggle();
-
-    console.log(library[del.dataset.tile]["read"]);
-
-    console.log(library);
-
-  
+    tileIsRead.innerHTML = `${book.read}`;
+    readColor();
   })
-
 
   modal.style.display = "none";
   addForm.style.display = "none";

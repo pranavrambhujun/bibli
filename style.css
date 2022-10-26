@@ -154,7 +154,6 @@ select {
 }
 
 .book-info {
-  background-color: #eef7ff;
   display: flex;
   flex-direction: column;
   align-items: center;
