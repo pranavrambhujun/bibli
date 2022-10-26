@@ -27,9 +27,10 @@ const Book = function (title, author, pages, read) {
   this.pages = pages;
   this.read = read;
   this.readToggle = function() {
-    if(this.read = "Read") {
-      this.read = "Not read"
-    } else {
+    if(this.read == "Read") {
+      this.read = "Not read";
+    }
+    if(this.read == "Not read") {
       this.read = "Read"
     }
   }
