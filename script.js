@@ -13,7 +13,6 @@ const addForm = document.getElementById("addForm");
 const modal = document.getElementById("modal");
 const form = document.getElementById("form");
 const tile = document.getElementById('tile');
-const dels = document.querySelectorAll("del");
 
 var titleVal = document.getElementById("title");
 var authorVal = document.getElementById("author");
@@ -65,6 +64,7 @@ function createTile(book) {
   const del = document.createElement("div");
   del.classList.add("del");
 
+
   tileTitle.innerHTML = book.title;
   tileAuthor.innerHTML = book.author;
   tilePages.innerHTML = `${book.pages} pages`;
@@ -97,12 +97,13 @@ const onSubmit = function (event) {
   addForm.style.display = "none";
 };
 
+
 // renders book in tileField
 function renderBooks() {
   tileField.innerHTML = "";
   for (let i = 0; i < library.length; i++) {
     createTile(library[i]);
-    tileField.childNodes[i].dataset.tile = i;
+    tileField.childNodes[i].firstChild.firstChild.dataset.tile = i;
   }
 }
 
@@ -119,8 +120,14 @@ add.addEventListener("click", function () {
   });
 });
 
+const dels = document.querySelectorAll(".del");
+
+
 dels.forEach(element => {
   element.addEventListener("click", function() {
-
+    library.splice(element.dataset.tile, 1)
+    renderBooks();
   })
 })
+
+
