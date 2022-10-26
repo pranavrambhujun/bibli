@@ -83,6 +83,14 @@ function createTile(book) {
   tileField.appendChild(tile);
 
 
+
+  del.addEventListener("click", function() {
+    library.splice(del.dataset.tile, 1)
+    console.log(library)
+    renderBooks();
+  })
+
+
   modal.style.display = "none";
   addForm.style.display = "none";
 }
@@ -123,11 +131,5 @@ add.addEventListener("click", function () {
 const dels = document.querySelectorAll(".del");
 
 
-dels.forEach(element => {
-  element.addEventListener("click", function() {
-    library.splice(element.dataset.tile, 1)
-    renderBooks();
-  })
-})
 
 
