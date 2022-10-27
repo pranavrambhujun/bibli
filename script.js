@@ -128,12 +128,18 @@ function createTile(book) {
 // func for when a book is submitted
 const onSubmit = function (event) {
   event.preventDefault();
-  addBookToLibrary();
-  console.log(library);
-  renderBooks();
 
-  modal.style.display = "none";
-  addForm.style.display = "none";
+  // verifies first if inputs are filled else render books
+  if (titleVal.value == "" || authorVal.value == "" || pagesVal.value == "") {
+    alert('Inputs are empty')
+  } else {
+    addBookToLibrary();
+    renderBooks();
+
+    modal.style.display = "none";
+    addForm.style.display = "none";
+  }
+  
 };
 
 
