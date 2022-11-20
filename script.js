@@ -17,7 +17,7 @@ const library = [];
 
 
 // book constructor
-const Book = function (title, author, pages, read) {
+/*const Book = function (title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -31,6 +31,24 @@ const Book = function (title, author, pages, read) {
     }
   }
 };
+*/
+
+// Book Class
+class Book {
+  constructor (title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  readToggle() {
+    if(this.read == "Read") {
+      this.read = "Not read";
+    } else {
+      this.read = "Read";
+    }
+  }
+}
 
 // appending some books for testing
 library.push(new Book("Liber Null & Psychonaut", "Peter J Caroll", 224, "Read"));
